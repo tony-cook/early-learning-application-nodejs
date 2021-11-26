@@ -1,6 +1,6 @@
-****************\*\*\*\*****************README FOR TEAM MINIMUM WAGERS GITHUB (REMOTE) REPOSITORY**************\*\*\***************
+*****README FOR TEAM MINIMUM WAGERS GITHUB (REMOTE) REPOSITORY*****
 
-************************\*************************1. CONTENTS********************************\*\*\*********************************
+*****1. CONTENTS*****
 
 1. CONTENTS
 2. ABOUT
@@ -10,7 +10,7 @@
 6. GITHUB REPOSITORY PUSH COMMANDS
 7. GITHUB REPOSITORY CLONING COMMANDS
 
-**********************\*\***********************2. ABOUT**********************************\*\***********************************
+*****2. ABOUT*****
 
 Readme file for team Minimum Wagers Mission X Project Build.
 
@@ -30,7 +30,7 @@ Never rewrite shared history
 
 GO TEAM GO
 
-**\*\*\*\***3. FOLDER STRUCTURES******\*\*\*******
+*****3. FOLDER STRUCTURES*****
 
 Front End
 \*missionX-frontend-2110L4T4
@@ -45,7 +45,7 @@ Back End
 \*missionX-backend-2110L4T4
 --src
 
-**\*\*\*\***4. BRANCH STRUCTURES********\*********
+*****4. BRANCH STRUCTURES*****
 
 Front End
 --main
@@ -56,17 +56,16 @@ Front End
 Back End
 **to be decided**
 
-******************\*\*\*\*******************5. GITHUB REPOSITORY PULL COMMANDS****************\*\*\*\*****************
-**************\*\***************USE THIS WHEN SOMEONE ELSE MAKES A COMMIT ON GITHUB(UPDATES)********\*\*\*\*********
-
+*****5. GITHUB REPOSITORY PULL COMMANDS*****
+*****USE THIS WHEN SOMEONE ELSE MAKES A COMMIT ON GITHUB(UPDATES)*****
 Frontend developement
 git pull
 
 Backend development
 git pull
 
-**************\*\*\***************6. GITHUB REPOSITORY PUSH COMMANDS**********************\***********************
-************\*************USE THIS WHEN SAVING A NEW COMMIT TO GITHUB (SAVING)**************\*\*\*\***************
+*****6. GITHUB REPOSITORY PUSH COMMANDS*****
+*****USE THIS WHEN SAVING A NEW COMMIT TO GITHUB (SAVING)*****
 
 Frontend developement
 git remote add origin https://github.com/Mission-Ready/missionX-frontend-2110L4T4.git
@@ -78,8 +77,8 @@ git remote add origin https://github.com/Mission-Ready/missionX-backend-2110L4T4
 git branch -M main
 git push -u origin main
 
-******************\*\*\*\*******************7. GITHUB REPOSITORY CLONING COMMANDS ****************\*****************
-********\*\*\*********USE THIS WHEN STARTING A NEW DAY TO GET THE LATEST COPY FROM GITHUB(COPY)********\*\*\*\*********
+*****7. GITHUB REPOSITORY CLONING COMMANDS*****
+*****USE THIS WHEN STARTING A NEW DAY TO GET THE LATEST COPY FROM GITHUB(COPY)*****
 
 Frontend developement
 git clone https://github.com/Mission-Ready/missionX-frontend-2110L4T4.git
