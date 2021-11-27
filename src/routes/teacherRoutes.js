@@ -8,110 +8,49 @@ const router = express.Router();
 
 router.get('/teacher/:teacherID/projects', (req, res) => {
 
-    const user = req.params.teacherID
+// Variables defined from dynamic route:
+    const userId = req.params.teacherID
 
+// Variables defined from URL query parameters:
     const query1 = req.query.subscription
     const query2 = req.query.activity_type
-    const query3 = req.query.year
-    const query4 = req.query.subject
-
-// Handling the request prior to MySQL query and response.
-// 1. Convert the query to an array if it is a string
-// 2. Loop to create an array with a consistent length for the SQL query
-
-    const subscription = []
-    const activityType = []
-    const yearLevel = []
-    const subject = []
-
-    // Subscription type
-
-        if (typeof query1 === "string") {
-            subscription.push(query1)
-            subscription.push("")
-        }
-
-        if (typeof query1 === "object") {
-            for(i =0; i <= 1;i++) {
-                subscription.push(query1[i])
-            }
-        }
-
-    // Activity type
-
-        if (typeof query2 === "string") {
-            activityType.push(query2)
-
-            for(i=0; i <= 3;i++) {
-                if(activityType[i] === undefined){
-                    activityType[i] = ""
-                }
-            }
-        }
-
-        if (typeof query2 === "object") {
-            for(i =0; i <= 3;i++) {
-                activityType.push(query2[i])
-                if (activityType[i] === undefined){
-                    activityType[i] = ""
-                }
-            }
-        }
-
-    // Year Level
-
-            if (typeof query3 === "string") {
-                yearLevel.push(query3)
+    const query3 = req.query.yearMin
+    const query4 = req.query.yearMax
+    const query5 = req.query.subject
+    const query6 = req.query.course
+    const query7 = req.query.showmax
     
-                for(i=0; i <= 3;i++) {
-                    if(yearLevel[i] === undefined){
-                        yearLevel[i] = ""
-                    }
-                }
-            }
-    
-            if (typeof query3 === "object") {
-                for(i =0; i <= 3;i++) {
-                    yearLevel.push(query3[i])
-                    if (yearLevel[i] === undefined){
-                        yearLevel[i] = ""
-                    }
-                }
-            }
+// Defining variables for DB queries: 
+    const subscription = query1
+    const activityType = query2
+    const yearLevelMin = Math.min(...query3)
+    const yearLevelMax = Math.max(...query4)
+    const subject = query5
+    const courseLevel = query6
+    const showMaxResults = query7
 
-    // Subject Matter
+// DB query for the filtered list to render in the project gallery
 
-            if (typeof query4 === "string") {
-                subject.push(query4)
-    
-                for(i=0; i <= 5;i++) {
-                    if(subject[i] === undefined){
-                        subject[i] = ""
-                    }
-                }
-            }
-    
-            if (typeof query4 === "object") {
-                for(i =0; i <= 5;i++) {
-                    subject.push(query4[i])
-                    if (subject[i] === undefined){
-                        subject[i] = ""
-                    }
-                }
-            }
-
-
-console.log(subject)
-
-
-    db.query('SELECT profile_pic, name FROM teachers WHERE teacher_id = ?',
-            [user], 
+// *** NEEDS SUBJECT QUERY ADDED IN TO DB QUERY ***
+    db.query(`SELECT project_pic, name, activity_type, course 
+            FROM projects WHERE subscription IN (?) 
+            AND activity_type IN (?) 
+            AND year BETWEEN ? AND ? 
+            AND course IN (?) LIMIT ?`,
+            [subscription, activityType, yearLevelMin, yearLevelMax,courseLevel,showMaxResults], 
             (err,result) => {
                 res.send(result)
             })
 
+// DB query for teacher profile information to render in the navbar
+    db.query('SELECT profile_pic, name, school, date_of_birth, contact_number, email FROM teachers WHERE teacher_id = ?',
+            [userId], 
+            (err,result) => {
+                res.send(result)
+            })
 
 })
+
 
 
 module.exports = router;
