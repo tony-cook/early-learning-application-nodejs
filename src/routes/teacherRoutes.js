@@ -6,10 +6,15 @@ const router = express.Router();
 
 //  route for /teacher/:teacherID/projects
 
+router.get('/teacher/:teacherID', (req, res) => {console.log(req)})
+
 router.get('/teacher/:teacherID/projects', (req, res) => {
 
 // Variables defined from dynamic route:
     const userId = req.params.teacherID
+
+// Variable to store the response object
+    const responseData = []
 
 // Variables defined from URL query parameters:
     const query1 = req.query.subscription
@@ -43,8 +48,8 @@ router.get('/teacher/:teacherID/projects', (req, res) => {
     const courseLevel = query11
     const showMaxResults = query12
 
-    console.log(showMaxResults)
 // DB query for the filtered list to render in the project gallery
+// Also has nested DB query for teacher name and teacher profile_pic
 
     db.query(
             `SELECT project_pic, name, activity_type, course 
@@ -64,15 +69,18 @@ router.get('/teacher/:teacherID/projects', (req, res) => {
             LIMIT ${showMaxResults}`,
             [subscription, activityType, yearLevelMin, yearLevelMax, subjectCsc, subjectMath, subjectSci, subjectLang, subjectArt, subjectMusic, courseLevel], 
             (err,result) => {
-                res.send(result)
+                responseData.push(result)
+
+                db.query(`SELECT profile_pic, name 
+                        FROM teachers WHERE teacher_id = ?`,
+                        [userId],(err,result) => {
+                        responseData.push(result)
+                        res.send(responseData)
+                    })
+                
             })
 
-// DB query for teacher profile information to render in the navbar
-    // db.query('SELECT profile_pic, name, school, date_of_birth, contact_number, email FROM teachers WHERE teacher_id = ?',
-    //         [userId], 
-    //         (err,result) => {
-    //             res.send(result)
-    //         })
+            
 
 })
 
