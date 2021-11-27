@@ -61,8 +61,8 @@ router.get('/teacher/:teacherID/projects', (req, res) => {
             OR subjects_shortcode LIKE ?
             )
             AND course IN (?) 
-            LIMIT ?`,
-            [subscription, activityType, yearLevelMin, yearLevelMax, subjectCsc, subjectMath, subjectSci, subjectLang, subjectArt, subjectMusic, courseLevel, showMaxResults], 
+            LIMIT ${showMaxResults}`,
+            [subscription, activityType, yearLevelMin, yearLevelMax, subjectCsc, subjectMath, subjectSci, subjectLang, subjectArt, subjectMusic, courseLevel], 
             (err,result) => {
                 res.send(result)
             })
