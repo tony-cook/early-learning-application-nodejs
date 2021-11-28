@@ -5,8 +5,7 @@ const dotenv = require("dotenv").config({path: __dirname + '/.env'});
 
 const teacherRoutes = require('./routes/teacherRoutes');
 const db = require('./db/db');
-const dbTest = require('./utils/dbTest');
-const serverTest = require('./utils/serverTest');
+const connections = require('./utils/connections');
 
 
 app.use('/', teacherRoutes);
@@ -14,6 +13,6 @@ app.use('/', teacherRoutes);
 
 
 
-db.connect(dbTest)
+db.connect(connections.dbTest)
 
-app.listen(4000,serverTest)
+app.listen(4000,connections.serverTest)
