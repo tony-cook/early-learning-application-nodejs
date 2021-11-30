@@ -57,11 +57,12 @@ Front End:<br/>
 Back End:<br/>
 --main<br/>
 ---student_profile_page<br/>
---teacher_project_library_page<br/>
---test<br/>
+---teacher_project_library_page<br/>
+---test<br/>
 
 *****5. GITHUB REPOSITORY PULL COMMANDS*****
 *****USE THIS WHEN SOMEONE ELSE MAKES A COMMIT ON GITHUB(UPDATES)*****
+<br/>
 Frontend developement:<br/>
 git pull
 <br/>
@@ -69,8 +70,8 @@ Backend development:<br/>
 git pull <br/>
 <br/>
 *****6. GITHUB REPOSITORY PUSH COMMANDS*****
-*****USE THIS WHEN SAVING A NEW COMMIT TO GITHUB (SAVING)*****
-
+*****USE THIS WHEN SAVING A NEW COMMIT TO GITHUB (SAVING)*****<br/>
+<br/>
 Frontend developement:<br/>
 git remote add origin https://github.com/Mission-Ready/missionX-frontend-2110L4T4.git<br/>
 git branch -M main<br/>
