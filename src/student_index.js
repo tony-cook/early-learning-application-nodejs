@@ -41,7 +41,27 @@ app.get('/studentProfile/:id',(req,res) => {
     
     (err,result) => {
         res.send(result);
-        console.log(result)
+    })
+})
+// ===== 
+
+// ===== Teachers Profile page informaiton 
+app.get('/teachersProfile/:id',(req,res) => {
+    
+    db.query(`SELECT 
+    teachers.name, 
+    email, 
+    DATE_FORMAT(teachers.date_of_birth, "%Y %M %D") AS date_of_birth,
+    contact_number,
+    school,
+    projects.course 
+    FROM teachers
+    JOIN projects 
+    ON teachers.teacher_id=? 
+    AND projects.project_id=? `, [req.params.id,req.params.id], 
+    
+    (err,result) => {
+        res.send(result);
     })
 })
 // ===== 
