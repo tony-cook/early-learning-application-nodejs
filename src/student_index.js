@@ -23,4 +23,27 @@ db.connect((err) => {
     }
 })
 
+// ===== Student Profile page informaiton 
+app.get('/studentProfile/:id',(req,res) => {
+    
+    db.query(`select students.name AS student_name, 
+    students.email, 
+    students.school, 
+    students.contact_number, 
+    DATE_FORMAT(students.date_of_birth, "%Y %M %D") AS date_of_birth, 
+    teachers.name as teachers_name, 
+    course from students 
+    INNER JOIN teachers 
+    JOIN projects ON projects.project_id=? 
+    AND teachers.teacher_id=? 
+    AND students.student_id=?`, 
+    [req.params.id,req.params.id,req.params.id], 
+    
+    (err,result) => {
+        res.send(result);
+        console.log(result)
+    })
+})
+// ===== 
+
 app.listen(4000)
