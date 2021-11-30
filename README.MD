@@ -63,8 +63,10 @@ Back End:<br/>
 *****5. GITHUB REPOSITORY PULL COMMANDS*****
 *****USE THIS WHEN SOMEONE ELSE MAKES A COMMIT ON GITHUB(UPDATES)*****
 <br/>
+<br/>
 Frontend developement:<br/>
 git pull
+<br/>
 <br/>
 Backend development:<br/>
 git pull <br/>
@@ -85,9 +87,11 @@ git push -u origin main<br/>
 *****7. GITHUB REPOSITORY CLONING COMMANDS*****
 *****USE THIS WHEN STARTING A NEW DAY TO GET THE LATEST COPY FROM GITHUB(COPY)*****
 <br/>
+<br/>
 Frontend developement:<br/>
 git clone https://github.com/Mission-Ready/missionX-frontend-2110L4T4.git<br/>
 git remote https://github.com/Mission-Ready/missionX-frontend-2110L4T4.git<br/>
 
 Backend development:<br/>
-**to be decided**<br/>
+git clone https://github.com/Mission-Ready/missionX-backend-2110L4T4<br/>
+git remote https://github.com/Mission-Ready/missionX-backend-2110L4T4<br/>
