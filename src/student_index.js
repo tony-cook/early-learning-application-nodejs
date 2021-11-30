@@ -46,4 +46,30 @@ app.get('/studentProfile/:id',(req,res) => {
 })
 // ===== 
 
+// ===== Student Project Builder page grabbing instructions
+app.get('/studentProjectBuilder/instructions/:id',(req,res) => {
+    
+    db.query(`SELECT instructions 
+    FROM projects 
+    WHERE project_id=?`, [req.params.id],
+    
+    (err,result) => {
+        res.send(result);
+    })
+
+})
+// ===== 
+
+// ===== Student Project page showing all results 
+app.get('/studentProjectBuilder',(req,res) => {
+    
+    db.query(`SELECT * from projects`, 
+    
+    (err,result) => {
+        res.send(result);
+    })
+
+})
+// ===== 
+
 app.listen(4000)
