@@ -1,0 +1,70 @@
+.top{
+    font-family:Arial, Helvetica, sans-serif;
+    background-color: #43C0F6;
+    /* border: 1px solid blue; */
+    display: flex;
+    justify-content: center;
+}
+
+.header{
+    /* border: 11px solid red; */
+    width: 800px; 
+    display: flex;
+    justify-content: space-between;
+    opacity: 1;
+    font-size: 12px;
+}
+
+.header-box-one{
+    /* border: 2px solid black; */
+    /* flex-grow: 0; */
+}
+
+.header-box-two{
+    display: flex;
+    align-items: flex-end;
+    /* border: 2px solid red; */
+}
+
+.header-box-two a{
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 0px 20px 05px 20px;
+    
+}
+
+.header-box-three{
+/* border: 2px solid blue; */
+    color: white;
+    flex-grow: 0;
+    display: flex;
+    align-content: flex-end;
+}
+
+.header-profile-box{
+    /* border: 2px solid red; */
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    text-align: end;
+    font-weight: bold;
+}
+
+.holder{
+    display: flex;
+    font-weight: bold;
+    /* border: 2px solid red; */
+    flex-direction: column;
+    align-self: flex-end;
+    align-items: flex-end;
+}
+
+.smallProfile{
+    height: 20px;
+}
+
+.profileStudentName{
+    /* border: 2px solid red; */
+    padding: 0px 5px 0px 5px;
+}
