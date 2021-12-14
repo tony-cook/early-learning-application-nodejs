@@ -13,6 +13,5 @@ app.use('/', teacherRoutes);
 
 
 
-db.connect(connections.dbTest)
 
 app.listen(4000,connections.serverTest)
