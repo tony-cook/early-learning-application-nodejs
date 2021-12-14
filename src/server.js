@@ -4,14 +4,10 @@ const app = express();
 const dotenv = require("dotenv").config({path: __dirname + '/.env'});
 
 const teacherRoutes = require('./routes/teacherRoutes');
-const db = require('./db/db');
-const connections = require('./utils/connections');
+const serverTest = require('./utils/connections');
 
 
 app.use('/', teacherRoutes);
 
 
-
-
-
-app.listen(4000,connections.serverTest)
+app.listen(4000,serverTest)
