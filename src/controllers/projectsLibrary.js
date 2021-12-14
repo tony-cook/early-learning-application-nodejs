@@ -43,7 +43,7 @@ const handleProjectLibrary = (req, res) => {
         const showMaxResults = query12
     
 // DB query for the filtered list to render in the project gallery
-// Also has nested DB query for teacher name and teacher profile_pic (sending response object)
+// Also has nested DB query for teacher name and teacher profile_pic, finally sending the response object
     
         db.query(
                 `SELECT project_pic, name, activity_type, course 
@@ -63,14 +63,28 @@ const handleProjectLibrary = (req, res) => {
                 LIMIT ${showMaxResults}`,
                 [subscription, activityType, yearLevelMin, yearLevelMax, subjectCsc, subjectMath, subjectSci, subjectLang, subjectArt, subjectMusic, courseLevel], 
                 (err,result) => {
-                    responseData.push(result)
-    
-                    db.query(`SELECT profile_pic, name 
-                            FROM teachers WHERE teacher_id = ?`,
-                            [userId],(err,result) => {
-                            responseData.push(result)
-                            res.send(responseData)
-                        })  
+
+                        if(err) {
+                                console.log(err)
+                                res.sendStatus(400);
+                        } else {
+                                
+                                responseData.push(result)
+
+                                db.query(`SELECT profile_pic, name 
+                                FROM teachers WHERE teacher_id = ?`,
+                                [userId],(err,result) => {
+
+                                        if(err) {
+                                                console.log(err)
+                                                res.sendStatus(400);   
+                                        } else {      
+
+                                                responseData.push(result)
+                                                res.send(responseData)
+                                        }
+                                })  
+                        }
                 })
 }
 
