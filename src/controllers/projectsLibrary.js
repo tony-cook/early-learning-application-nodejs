@@ -10,38 +10,28 @@ const handleProjectLibrary = (req, res) => {
 // Variable to store the response object (response object)
         const responseData = []
     
-// Variables defined from URL query parameters (request):
-        const query1 = req.query.subscription
-        const query2 = req.query.activity_type
-        const query3 = req.query.yearMin
-        const query4 = req.query.yearMax
-    
-        const query5 = req.query.CSC
-        const query6 = req.query.MAT
-        const query7 = req.query.SCI
-        const query8 = req.query.LAN
-        const query9 = req.query.ART
-        const query10 = req.query.MUS
-    
-        const query11 = req.query.course
-        const query12 = req.query.showMax
-        
+// Variables defined from URL query parameters (request)
+        const userQuery = req.query
+
 // Defining variables for DB queries: 
-        const subscription = query1
-        const activityType = query2
-        const yearLevelMin = Math.min(...query3)
-        const yearLevelMax = Math.max(...query4)
-    
-        const subjectCsc = query5
-        const subjectMath = query6
-        const subjectSci = query7
-        const subjectLang = query8
-        const subjectArt = query9
-        const subjectMusic = query10
-    
-        const courseLevel = query11
-        const showMaxResults = query12
-    
+ 
+        const subscription = userQuery.subscription ? userQuery.subscription : ["free","premium"]
+        const activityType = userQuery.activity_type ? userQuery.activity_type : ["animation","game","chatbot","augmentedreality"]
+        const yearLevelMin = userQuery.yearMin ? Math.min(...userQuery.yearMin) : 1
+        const yearLevelMax = userQuery.yearMax ? Math.max(...userQuery.yearMax) : 99
+
+        const subjectCsc = userQuery.CSC
+        const subjectMath = userQuery.MAT
+        const subjectSci = userQuery.SCI
+        const subjectLang = userQuery.LAN
+        const subjectArt = userQuery.ART
+        const subjectMusic = userQuery.MUS
+
+        const subjects = [subjectCsc,subjectMath,subjectSci,subjectLang,subjectArt,subjectMusic]
+
+        const courseLevel = userQuery.course
+        const showMaxResults = userQuery.showMax
+
 // DB query for the filtered list to render in the project gallery
 // Also has nested DB query for teacher name and teacher profile_pic, finally sending the response object
     
@@ -63,23 +53,18 @@ const handleProjectLibrary = (req, res) => {
                 LIMIT ${showMaxResults}`,
                 [subscription, activityType, yearLevelMin, yearLevelMax, subjectCsc, subjectMath, subjectSci, subjectLang, subjectArt, subjectMusic, courseLevel], 
                 (err,result) => {
-
                         if(err) {
                                 console.log(err)
                                 res.sendStatus(400);
                         } else {
-                                
                                 responseData.push(result)
-
                                 db.query(`SELECT profile_pic, name 
                                 FROM teachers WHERE teacher_id = ?`,
                                 [userId],(err,result) => {
-
                                         if(err) {
                                                 console.log(err)
                                                 res.sendStatus(400);   
                                         } else {      
-
                                                 responseData.push(result)
                                                 res.send(responseData)
                                         }
