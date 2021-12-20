@@ -3,10 +3,11 @@ const mysql =require('mysql2');
 const app = express();
 const dotenv = require("dotenv").config({path: __dirname + '/.env'});
 
+const studentRoutes = require('./routes/studentRoutes');
 const serverTest = require('./utils/connections');
 
-const studentRoutes = require('./routes/studentRoutes');
 
-app.use('/student/:studentID', studentRoutes);
+app.use('/student', studentRoutes);
+
 
 app.listen(4000,serverTest)
