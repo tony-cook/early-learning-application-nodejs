@@ -7,7 +7,7 @@ const teacherRoutes = require('./routes/teacherRoutes');
 const serverTest = require('./utils/connections');
 
 
-app.use('/', teacherRoutes);
+app.use('/teacher', teacherRoutes);
 
 
 app.listen(4000,serverTest)
