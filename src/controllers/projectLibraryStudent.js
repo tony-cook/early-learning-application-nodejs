@@ -17,8 +17,8 @@ const handleProjectLibrary = (req, res) => {
  
         const subscription = userQuery.subscription ? userQuery.subscription : ["free","premium"]
         const activityType = userQuery.activity_type ? userQuery.activity_type : ["animation","game","chatbot","augmentedreality"]
-        const yearLevelMin = userQuery.yearMin ? Math.min(...userQuery.yearMin) : 1
-        const yearLevelMax = userQuery.yearMax ? Math.max(...userQuery.yearMax) : 99
+        const yearLevelMin = typeof userQuery.yearMin == "string" ? Number(userQuery.yearMin) : userQuery.yearMin ? Math.min(...userQuery.yearMin) : 1
+        const yearLevelMax = typeof userQuery.yearMax == "string" ? Number(userQuery.yearMax) : userQuery.yearMax ? Math.max(...userQuery.yearMax) : 99
 
         const subjectCsc = userQuery.CSC
         const subjectMath = userQuery.MAT
