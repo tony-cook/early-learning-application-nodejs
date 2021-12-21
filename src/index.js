@@ -23,6 +23,19 @@ db.connect((err) => {
     }
 })
 
+// ====== Student TEST GRAB ALL
+app.get('/students',(req,res) => {
+    
+    db.query(`SELECT * from students`, 
+    
+    (err,result) => {
+        res.send(result);
+        console.log('Result successful')
+    })
+
+})
+// ======
+
 // ===== Student Profile page informaiton 
 app.get('/studentProfile/:id',(req,res) => {
     
@@ -33,8 +46,31 @@ app.get('/studentProfile/:id',(req,res) => {
     DATE_FORMAT(students.date_of_birth, "%Y %M %D") AS date_of_birth, 
     teachers.name as teachers_name, 
     course from students 
-    INNER JOIN teachers 
-    JOIN projects ON projects.project_id=? 
+    JOIN teachers 
+    JOIN projects 
+    ON projects.project_id=? 
+    AND teachers.teacher_id=? 
+    AND students.student_id=?`, 
+    [req.params.id,req.params.id,req.params.id], 
+    
+    (err,result) => {
+        res.send(result);
+    })
+})
+// ===== 
+
+// ===== Student Profile page DOB not formatted 
+app.get('/studentProfilePre/:id',(req,res) => {
+    
+    db.query(`select students.name, 
+    students.email, 
+    students.school, 
+    students.contact_number, 
+    students.date_of_birth, 
+    teachers.name, course from students 
+    JOIN teachers 
+    JOIN projects 
+    ON projects.project_id=? 
     AND teachers.teacher_id=? 
     AND students.student_id=?`, 
     [req.params.id,req.params.id,req.params.id], 
@@ -66,12 +102,10 @@ app.get('/teachersProfile/:id',(req,res) => {
 })
 // ===== 
 
-// ===== Student Project Builder page grabbing instructions
-app.get('/studentProjectBuilder/instructions/:id',(req,res) => {
+// ===== Student Project page 
+app.get('/studentProject/:id',(req,res) => {
     
-    db.query(`SELECT instructions 
-    FROM projects 
-    WHERE project_id=?`, [req.params.id],
+    db.query(`SELECT * FROM projects WHERE project_id=?`, [req.params.id], 
     
     (err,result) => {
         res.send(result);
@@ -80,7 +114,18 @@ app.get('/studentProjectBuilder/instructions/:id',(req,res) => {
 })
 // ===== 
 
-// ===== Student Project page showing all results 
+// ===== Student Project Builder page 
+app.get('/studentProjectBuilder/instructions/:id',(req,res) => {
+    
+    db.query(`SELECT instructions FROM projects WHERE project_id=?`, [req.params.id],
+    
+    (err,result) => {
+        res.send(result);
+    })
+
+})
+// ===== 
+// ===== Student Project Builder page 
 app.get('/studentProjectBuilder',(req,res) => {
     
     db.query(`SELECT * from projects`, 
