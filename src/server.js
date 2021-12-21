@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql =require('mysql2');
+const cors = require('cors')
 const app = express();
 const dotenv = require("dotenv").config({path: __dirname + '/.env'});
 
@@ -8,7 +9,8 @@ const teacherRoutes = require('./routes/teacherRoutes');
 const studentRoutes = require('./routes/studentRoutes');
 const serverTest = require('./utils/connections');
 const db = require('./db/db')
-
+app.use(cors())
+app.use(express.json())
 
 app.use('/teacher', teacherRoutes);
 app.use('/student', studentRoutes);
