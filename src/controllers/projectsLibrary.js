@@ -18,8 +18,7 @@ const handleProjectLibrary = (req, res) => {
         const activityType = userQuery.activity_type ? userQuery.activity_type : ["animation","game","chatbot","augmentedreality"]
         const yearLevelMin = typeof userQuery.yearMin == "string" ? Number(userQuery.yearMin) : userQuery.yearMin ? Math.min(...userQuery.yearMin) : 1
         const yearLevelMax = typeof userQuery.yearMax == "string" ? Number(userQuery.yearMax) : userQuery.yearMax ? Math.max(...userQuery.yearMax) : 99
-        console.log(userQuery.yearMax)
-        console.log(Number(userQuery.yearMax))
+
         const subjectCsc = userQuery.CSC
         const subjectMath = userQuery.MAT
         const subjectSci = userQuery.SCI
